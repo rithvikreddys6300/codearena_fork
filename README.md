@@ -1,231 +1,228 @@
-# Trash Talk Feature 🔥
+# Code Arena - LLM Battle Platform with Trash Talk Feature 🔥
 
-A hilarious AI feature that adds competitive trash-talking capabilities to AI agents. When enabled, the AI will roast opponents in creative and funny ways across different categories and intensity levels.
+An interactive platform where AI language models compete in coding challenges, now enhanced with a hilarious trash talk feature that adds competitive banter to the battles!
 
 ## Features
 
+### Core Platform
+- **Real-time LLM Battles**: Watch different AI models compete in coding challenges
+- **Interactive Voting**: Vote on which model performed better
+- **Leaderboard**: Track model performance over time
+- **Live Code Preview**: See generated code running in real-time
+
+### 🔥 NEW: Trash Talk Feature
 - **Toggle On/Off**: Easy enable/disable functionality
 - **Opponent Configuration**: Set custom opponent names
 - **Multiple Categories**: Gaming, Sports, Programming, Academic, Cooking, General
 - **Intensity Levels**: Mild (friendly), Medium (spicy), Savage (no mercy)
 - **Context-Aware**: Different roasts for intros, mid-conversation, and victories
-- **Randomized Content**: Hundreds of unique insults to keep it fresh
-- **Prompt Integration**: Seamlessly modifies AI prompts to include trash talk personality
+- **AI Integration**: Modifies AI prompts to include trash talk personality
 
 ## Quick Start
 
-### Basic Usage
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/create-next-app).
 
-```python
-from trash_talk import trash_talk_manager, TrashTalkCategory, IntensityLevel
+### Prerequisites
 
-# Enable trash talk
-trash_talk_manager.toggle_trash_talk(True)
+- Node.js 18+ 
+- npm or pnpm
+- Together AI API key
 
-# Set your opponent
-trash_talk_manager.set_opponent("CodeNewbie")
-
-# Configure category and intensity
-trash_talk_manager.set_category(TrashTalkCategory.PROGRAMMING)
-trash_talk_manager.set_intensity(IntensityLevel.SAVAGE)
-
-# Generate a roast
-roast = trash_talk_manager.get_trash_talk()
-print(roast)
-# Output: "CodeNewbie's code is so bad, even the compiler needs therapy"
-
-# Check status
-print(trash_talk_manager.get_status())
-```
-
-### Command Line Interface
+### Installation
 
 ```bash
-# Enable with specific settings
-python trash_talk_cli.py --enable --opponent "BuggyProgrammer" --category programming --intensity savage
+# Clone the repository
+git clone [your-repo-url]
+cd code-arena
 
-# Generate roasts
-python trash_talk_cli.py --roast
-python trash_talk_cli.py --intro
-python trash_talk_cli.py --victory
+# Install dependencies
+npm install
+# or
+pnpm install
 
-# Check status
-python trash_talk_cli.py --status
-
-# Run demo
-python trash_talk_cli.py --demo
+# Set up environment variables
+cp .env.example .env.local
+# Add your Together AI API key to .env.local
 ```
 
-### Interactive Demo
+### Running the Development Server
 
 ```bash
-python interactive_trash_talk.py
+npm run dev
+# or
+pnpm dev
 ```
 
-## Categories & Examples
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-### 🎮 Gaming
+## Trash Talk Usage
+
+### Basic UI Controls
+
+1. **Enable Trash Talk**: Toggle the "🔥 Trash Talk Mode" switch on the main page
+2. **Set Opponent**: Enter your opponent's name in the text field
+3. **Choose Category**: Select from Gaming, Programming, Sports, Academic, Cooking, or General
+4. **Pick Intensity**: Choose Mild, Medium, or Savage level roasts
+5. **Generate Roasts**: Click "Generate Roast 💀" to see trash talk in action
+
+### API Usage
+
+The trash talk feature is accessible via REST API:
+
+```typescript
+// Enable trash talk
+await fetch('/api/trash-talk', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    action: 'toggle',
+    enabled: true
+  })
+});
+
+// Set opponent
+await fetch('/api/trash-talk', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    action: 'setOpponent',
+    opponent: 'CodeNewbie'
+  })
+});
+
+// Generate a roast
+await fetch('/api/trash-talk', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    action: 'generateRoast',
+    context: 'victory' // 'intro', 'mid', or 'victory'
+  })
+});
+```
+
+### TypeScript Integration
+
+```typescript
+import { trashTalkManager } from '@/lib/trash-talk';
+import { TrashTalkCategory, IntensityLevel } from '@/types/trash-talk';
+
+// Configure trash talk
+trashTalkManager.toggleTrashTalk(true);
+trashTalkManager.setOpponent('Opponent');
+trashTalkManager.setCategory(TrashTalkCategory.PROGRAMMING);
+trashTalkManager.setIntensity(IntensityLevel.SAVAGE);
+
+// Generate roasts
+const roast = trashTalkManager.getTrashTalk('victory');
+console.log(roast); // "Opponent's code is so bad, even the compiler needs therapy"
+
+// Modify AI prompts
+const enhancedPrompt = trashTalkManager.modifyPrompt('You are a helpful AI assistant.');
+```
+
+## Tech Stack
+
+- **Framework**: Next.js 15 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **UI Components**: Radix UI
+- **Database**: PostgreSQL with Drizzle ORM
+- **AI Integration**: Together AI
+- **Code Sandbox**: Sandpack
+- **Deployment**: Vercel
+
+## Project Structure
+
+```
+src/
+├── app/                    # Next.js app router
+│   ├── api/               # API routes
+│   │   ├── generate-app/  # Code generation endpoint
+│   │   └── trash-talk/    # Trash talk API
+│   ├── page.tsx           # Main battle page
+│   └── layout.tsx         # Root layout
+├── components/            # React components
+│   ├── trash-talk/        # Trash talk components
+│   │   ├── TrashTalkControls.tsx
+│   │   └── TrashTalkDisplay.tsx
+│   └── ui/               # Shared UI components
+├── lib/                  # Utility functions
+│   └── trash-talk.ts     # Trash talk core logic
+└── types/               # TypeScript type definitions
+    └── trash-talk.ts    # Trash talk interfaces
+```
+
+## Trash Talk Examples
+
+### 🎮 Gaming Roasts
 - **Mild**: "looks like {opponent} still uses Internet Explorer to download Chrome"
 - **Savage**: "{opponent}'s gameplay is so bad, lag switches refuse to help them"
 
-### 💻 Programming
-- **Mild**: "{opponent} writes code like they're playing Scrabble with missing tiles"
+### 💻 Programming Burns
+- **Mild**: "{opponent} writes code like they're playing Scrabble with missing tiles" 
 - **Savage**: "If {opponent} wrote the code for a toaster, it would somehow catch fire while making ice"
 
-### 🏃 Sports
-- **Mild**: "{opponent} runs like they're carrying groceries in both hands"
-- **Savage**: "Even gravity gives up trying to work against {opponent}"
+### 🏆 Victory Celebrations
+- "GG EZ! {opponent} brought a spoon to a knife fight and I brought a laser cannon! ⚡"
+- "Flawless Victory! {opponent}, you can pick up your dignity at the lost and found... oh wait, they don't have it either! 👑"
 
-### 🎓 Academic
-- **Mild**: "{opponent} uses Wikipedia as their only source... and still gets it wrong"
-- **Savage**: "I've seen more scholarly insight in grocery store tabloids than in {opponent}'s work"
+## Environment Variables
 
-### 👨‍🍳 Cooking
-- **Mild**: "{opponent} burns water and somehow makes it taste bland"
-- **Savage**: "{opponent}'s cooking is so bad, Gordon Ramsay would just walk away in silence"
+Create a `.env.local` file with:
 
-### 💬 General
-- **Mild**: "{opponent} uses light mode and thinks it's edgy"
-- **Savage**: "{opponent} makes watching paint dry seem like an action movie"
-
-## API Reference
-
-### TrashTalkManager
-
-Main class for managing trash talk functionality.
-
-```python
-# Toggle trash talk
-enabled = trash_talk_manager.toggle_trash_talk(True)
-
-# Configure settings
-trash_talk_manager.set_opponent("OpponentName")
-trash_talk_manager.set_category(TrashTalkCategory.GAMING)
-trash_talk_manager.set_intensity(IntensityLevel.MEDIUM)
-
-# Generate trash talk
-roast = trash_talk_manager.get_trash_talk("mid")  # context: "intro", "mid", "victory"
-
-# Modify AI prompts
-modified_prompt = trash_talk_manager.modify_prompt(base_prompt)
-
-# Get status
-status = trash_talk_manager.get_status()
+```env
+TOGETHER_AI_API_KEY=your_together_ai_api_key_here
+DATABASE_URL=your_postgresql_connection_string
+HELICONE_API_KEY=your_helicone_key_for_monitoring (optional)
 ```
 
-### Categories
-
-```python
-from trash_talk import TrashTalkCategory
-
-TrashTalkCategory.GAMING
-TrashTalkCategory.SPORTS
-TrashTalkCategory.PROGRAMMING
-TrashTalkCategory.ACADEMIC
-TrashTalkCategory.COOKING
-TrashTalkCategory.GENERAL
-```
-
-### Intensity Levels
-
-```python
-from trash_talk import IntensityLevel
-
-IntensityLevel.MILD      # Friendly banter
-IntensityLevel.MEDIUM    # Solid burns
-IntensityLevel.SAVAGE    # Nuclear roasts
-```
-
-## Integration with AI Systems
-
-The trash talk feature can be integrated into any AI system by modifying the system prompt:
-
-```python
-# Original prompt
-base_prompt = "You are a helpful AI assistant."
-
-# Enable trash talk
-trash_talk_manager.toggle_trash_talk(True)
-trash_talk_manager.set_opponent("User")
-
-# Get modified prompt
-enhanced_prompt = trash_talk_manager.modify_prompt(base_prompt)
-
-# The AI will now occasionally roast the opponent while being helpful
-```
-
-## Configuration Management
-
-### Export/Import Settings
+## Development
 
 ```bash
-# Export current config
-python trash_talk_cli.py --export my_config.json
+# Run the development server
+npm run dev
 
-# Import config
-python trash_talk_cli.py --import my_config.json
+# Build for production
+npm run build
+
+# Start production server
+npm start
+
+# Lint code
+npm run lint
+
+# Database operations
+npm run db:push    # Push schema changes
+npm run db:pull    # Pull schema from database  
+npm run db:studio  # Open database studio
 ```
 
-### Frequency Settings
+## Contributing
 
-Control how often trash talk appears:
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-```python
-config = trash_talk_manager.config
+## License
 
-config.intro_frequency = 0.3          # 30% chance on conversation start
-config.mid_conversation_frequency = 0.2  # 20% chance during conversation
-config.victory_frequency = 0.5         # 50% chance on task completion
-```
-
-## Safety & Guidelines
-
-- **Keep it Fun**: All trash talk is designed to be humorous, not genuinely offensive
-- **Context Appropriate**: Use appropriate intensity levels for your audience
-- **Toggle Off**: Easy disable when professional tone is needed
-- **Customizable**: Adjust frequency and intensity to match your needs
-
-## Examples in Action
-
-### Gaming Session
-```python
-trash_talk_manager.toggle_trash_talk(True)
-trash_talk_manager.set_opponent("PlayerTwo")
-trash_talk_manager.set_category(TrashTalkCategory.GAMING)
-trash_talk_manager.set_intensity(IntensityLevel.MEDIUM)
-
-print(trash_talk_manager.get_trash_talk("intro"))
-# "Well well well, if it isn't PlayerTwo. Hope you brought aloe vera because you're about to get burned! 😎"
-
-print(trash_talk_manager.get_trash_talk())
-# "PlayerTwo plays games like they're solving taxes - confused and frustrated"
-
-print(trash_talk_manager.get_trash_talk("victory"))
-# "GG EZ! PlayerTwo brought a spoon to a knife fight and I brought a laser cannon! ⚡"
-```
-
-### Code Review Mode
-```python
-trash_talk_manager.set_category(TrashTalkCategory.PROGRAMMING)
-trash_talk_manager.set_intensity(IntensityLevel.SAVAGE)
-
-# AI reviewing code with attitude
-roast = trash_talk_manager.get_trash_talk()
-# "Developer's code has more bugs than a summer camping trip"
-```
-
-## Files
-
-- `trash_talk.py` - Main feature implementation
-- `trash_talk_cli.py` - Command line interface
-- `interactive_trash_talk.py` - Interactive demo
-- `README.md` - This documentation
-
-## Requirements
-
-- Python 3.6+
-- No external dependencies (uses only standard library)
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
-**Remember**: This is all about having fun! Keep the roasting playful and enjoy the competitive banter! 🔥😎
+**Remember**: The trash talk feature is all about having fun! Keep the roasting playful and enjoy the competitive banter! 🔥😎
+
+## Learn More
+
+To learn more about the technologies used:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API
+- [Together AI](https://together.ai/) - AI model platform
+- [Tailwind CSS](https://tailwindcss.com/) - utility-first CSS framework
+- [TypeScript](https://www.typescriptlang.org/) - typed JavaScript
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.

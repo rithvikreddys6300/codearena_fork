@@ -4,6 +4,8 @@ import RibbonIcon from "@/components/icons/ribbon";
 import SwordsIcon from "@/components/icons/swords";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import TrashTalkControls from "@/components/trash-talk/TrashTalkControls";
+import TrashTalkDisplay from "@/components/trash-talk/TrashTalkDisplay";
 import modelBackgroundImage from "@/public/model-background.png";
 import { Battle } from "@/schema";
 import {
@@ -208,6 +210,9 @@ export default function Home() {
 
   return (
     <div className="mx-auto w-full max-w-screen-2xl">
+      {/* Trash Talk Display */}
+      <TrashTalkDisplay context="intro" autoShow={status === "generating"} />
+      
       <div className="text-center">
         <h1 className="mt-8 font-title text-2xl font-bold tracking-[-.01em] text-gray-900 md:text-4xl">
           Which LLM Codes the Best?
@@ -215,6 +220,11 @@ export default function Home() {
         <p className="mx-auto mt-2 max-w-md text-balance text-sm tracking-[-.01em] text-gray-500 md:text-base">
           Watch AI models compete in real-time, and see who emerges victorious.
         </p>
+      </div>
+
+      {/* Trash Talk Controls */}
+      <div className="mx-auto mt-6 max-w-lg">
+        <TrashTalkControls />
       </div>
 
       <form onSubmit={handleSubmit} className="mx-auto mt-4 max-w-2xl md:mt-8">
@@ -304,15 +314,20 @@ export default function Home() {
       </div>
 
       {status === "complete" && appA && appB && (
-        <Vote
-          prompt={submittedPrompt}
-          apps={[appA, appB]}
-          onLaunchNextBattle={() => {
-            setStatus("idle");
-            setAppA(undefined);
-            setAppB(undefined);
-          }}
-        />
+        <>
+          {/* Victory Trash Talk */}
+          <TrashTalkDisplay context="victory" autoShow={true} />
+          
+          <Vote
+            prompt={submittedPrompt}
+            apps={[appA, appB]}
+            onLaunchNextBattle={() => {
+              setStatus("idle");
+              setAppA(undefined);
+              setAppB(undefined);
+            }}
+          />
+        </>
       )}
     </div>
   );
