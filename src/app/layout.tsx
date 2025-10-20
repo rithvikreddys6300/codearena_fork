@@ -21,12 +21,12 @@ const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta-sans",
 });
 
-const title = "CodeArena – Which LLM codes best?";
+const title = "CodeWars – Which LLM codes best?";
 const description =
   "Watch AI models compete in real-time & vote on the best one";
-const url = "https://llmcodearena.com/";
-const ogimage = "https://llmcodearena.com/og-image.png";
-const sitename = "llmcodearena.com";
+const url = "https://llmcodewars.com/";
+const ogimage = "https://llmcodewars.com/og-image.png";
+const sitename = "llmcodewars.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(url),
@@ -63,7 +63,7 @@ export default function RootLayout({
       className={`${tektur.variable} ${plusJakartaSans.variable} h-full`}
     >
       <head>
-        <PlausibleProvider domain="llmcodearena.com" />
+        <PlausibleProvider domain="llmcodewars.com" />
       </head>
       <body className="relative flex min-h-full flex-col bg-gray-300 text-gray-500 antialiased">
         <div
@@ -112,7 +112,7 @@ export default function RootLayout({
                 asChild
               >
                 <a
-                  href="https://github.com/Nutlope/codearena"
+                  href="https://github.com/Nutlope/codewars"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

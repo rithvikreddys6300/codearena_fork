@@ -215,7 +215,7 @@ export default function Home() {
       
       <div className="text-center">
         <h1 className="mt-8 font-title text-2xl font-bold tracking-[-.01em] text-gray-900 md:text-4xl">
-          Which LLM Codes the Best?
+          CodeWars - Which LLM Codes the Best?
         </h1>
         <p className="mx-auto mt-2 max-w-md text-balance text-sm tracking-[-.01em] text-gray-500 md:text-base">
           Watch AI models compete in real-time, and see who emerges victorious.

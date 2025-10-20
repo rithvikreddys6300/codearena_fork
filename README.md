@@ -1,4 +1,4 @@
-# Code Arena - LLM Battle Platform with Trash Talk Feature 🔥
+# CodeWars - LLM Battle Platform with Trash Talk Feature 🔥
 
 An interactive platform where AI language models compete in coding challenges, now enhanced with a hilarious trash talk feature that adds competitive banter to the battles!
 
@@ -33,7 +33,7 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 ```bash
 # Clone the repository
 git clone [your-repo-url]
-cd code-arena
+cd codewars
 
 # Install dependencies
 npm install
